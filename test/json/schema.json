@@ -1,0 +1,58 @@
+{
+	"sections":[
+  				{
+  					"name": "directory_structure",
+  					"required": false,
+  					"type": "Array",
+  					"ok_empty": true,
+  					"accepts":[
+  							"directory_list",
+  							"file_list"
+  						]
+  				},
+  				{
+  					"name": "tasks",
+  					"required": false,
+  					"type": "Array",
+  					"accepts": [
+  							"String"
+  						]
+  				},
+  				{
+  					"name": "includes",
+  					"required":false,
+  					"type": "Hash",
+  					"accepts":[
+  							"String"
+  						]
+    			}
+    		],
+    "types":{
+    	"directory_list":{
+    		"type":"Hash",
+    		"ok_empty":false,
+    		"accepts":[
+    			"directory"
+    		]
+		},
+  		"file_list":{
+    		"type": "Array",
+    		"ok_empty":false,
+    		"accepts":[
+    			"file"
+    		]
+    	},
+    	"directory":{
+    		"type": "Array",
+    		"ok_empty": true,
+    		"accepts":[
+    			"empty",
+    			"directory_list",
+    			"file_list"
+    		]
+    	},
+      	"file":{
+      		"type":"String"
+      	}
+     }
+}
