@@ -1,0 +1,18 @@
+directory_structure: 
+  -
+    lib: 
+      - 
+        <skeleton_project>:
+      -
+        - <skeleton_project>.rb
+    test:
+  - 
+    - <skeleton_project>.gemspec
+    - README
+    - LICENSE
+    - GemFile
+includes: 
+  <skeleton_project>.gemspec: includes/sample.gemspec
+  LICENSE: includes/LICENSE
+  GemFile: includes/GemFile
+   

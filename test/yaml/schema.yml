@@ -1,0 +1,38 @@
+sections:
+  - name: directory_structure
+    required: no
+    type: Array
+    ok_empty: yes
+    accepts:
+      - directory_list
+      - file_list
+  - name: tasks
+    required: no
+    type: Array
+    accepts: 
+      - String
+  - name: includes
+    required: no
+    type: Hash
+    accepts:
+      - String
+types:
+  directory_list:
+    type: Hash
+    ok_empty: no
+    accepts:
+      - directory
+  file_list:
+    type: Array
+    ok_empty: no
+    accepts:
+      - file
+  directory:
+    type: Array
+    ok_empty: yes
+    accepts:
+      - empty
+      - directory_list
+      - file_list
+  file:
+    type: String
