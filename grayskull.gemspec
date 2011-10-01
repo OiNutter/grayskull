@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = "Will validate YAML and JSON files based on a provided schema"
 
   s.files = Dir["README", "LICENSE", "lib/**/*.rb","bin/**/*"]
-  #s.executables = ["grayskull"]
+  s.executables = ["grayskull"]
   s.authors = ["Will McKenzie"]
   s.email = ["will@oinutter.co.uk"]
   s.homepage = "http://github.com/OiNutter/grayskull"
