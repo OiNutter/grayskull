@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "grayskull"
+require "optparse"
+
+Grayskull::CLI.start
