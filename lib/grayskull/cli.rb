@@ -9,7 +9,17 @@ module Grayskull
     # Creates a new *Validator* and validates the file    
     def validate(file,schema)
       validator = Grayskull::Validator.new(file,schema)
-      validator.validate
+      results = validator.validate
+      
+      if !results['result']
+        puts 'Validation Failed!'
+        results['errors'].each{
+          |error|
+          puts error
+        }
+      else
+        puts 'Validated Successfully!'
+      end
     end
     
   end
