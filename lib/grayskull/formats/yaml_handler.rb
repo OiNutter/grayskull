@@ -9,7 +9,7 @@ module Grayskull
       def self.load(file)
         begin
           return YAML.load_file(file)
-        rescue Error => e
+        rescue Exception => e
           raise e.class, 'File could not be parsed as valid YAML'          
         end
       end
