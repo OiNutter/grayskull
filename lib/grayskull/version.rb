@@ -1,3 +1,3 @@
 module Grayskull
-  Grayskull::VERSION = "0.1.0"
+  Grayskull::VERSION = "0.1.2"
 end
