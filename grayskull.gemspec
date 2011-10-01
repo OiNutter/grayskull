@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   
    s.add_dependency "thor"
+   s.add_dependency "json"
   
 end
 
