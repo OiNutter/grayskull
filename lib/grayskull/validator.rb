@@ -10,18 +10,18 @@ module Grayskull
       @file = file
       @schema = schema
       
-      if !Formats::FILENAME_PATTERN.match(file).nil?
+      if file.kind_of?(String) && !Formats::FILENAME_PATTERN.match(file).nil?
         @loaded_file = self.load(file)
       else
         @loaded_file = file
       end
       
-      if !Formats::FILENAME_PATTERN.match(schema).nil?
+      if schema.kind_of?(String) && !Formats::FILENAME_PATTERN.match(schema).nil?
         @loaded_schema = self.load(schema)
       else
         @loaded_schema = schema
       end
-      
+            
       @types = @loaded_schema['types'] || {}
       
       @errors = []
