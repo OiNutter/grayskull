@@ -1,7 +1,10 @@
 module Grayskull
   
+  # The *Validator* class contains the core methods of the Grayskull library.
+  # It loads the passed files, converts them to Ruby types and validates them.
   class Validator
     
+    # Creates a new *Validator* instance
     def initialize(file,schema)
       
       @file = file
@@ -14,6 +17,7 @@ module Grayskull
       @errors = []
     end
     
+    # Loads the specified file depending on the format
     def load(file)
      
       format = Formats::detect_format File.basename(file)
@@ -27,6 +31,7 @@ module Grayskull
        
     end
     
+    # Validates the file against the schema
     def validate()
        failed = []
         
@@ -57,7 +62,7 @@ module Grayskull
         return result
       end
       
-      # Checks template node matches the schema.
+      # Checks file node matches the schema.
       #
       # Checks type of node against expected type and 
       # checks any children are of the accepted types.
