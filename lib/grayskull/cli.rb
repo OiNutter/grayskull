@@ -12,11 +12,12 @@ module Grayskull
       results = validator.validate
       
       if !results['result']
-        puts 'Validation Failed!'
-        results['errors'].each{
-          |error|
-          puts error
-        }
+        puts 'Validation Failed with ' + @errors.count.to_s + ' errors';
+            puts ''
+            results["errors"].each{
+              |error|
+              puts error            
+            }
       else
         puts 'Validated Successfully!'
       end
