@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary = "Validates data files based on a provided schema"
   s.description = "Will validate YAML and JSON files based on a provided schema"
 
-  s.files = Dir["README", "LICENSE", "lib/**/*.rb","bin/**/*"]
+  s.files = Dir["README.md", "LICENSE", "lib/**/*.rb","bin/**/*"]
   s.executables = ["grayskull"]
   s.authors = ["Will McKenzie"]
   s.email = ["will@oinutter.co.uk"]
@@ -17,8 +17,8 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "grayskull"
   s.licenses = ["MIT"]
   
-   s.add_dependency "thor"
-   s.add_dependency "json"
+   s.add_dependency "thor", "~> 0.14.6"
+   s.add_dependency "json", "~> 1.6.1"
   
 end
 
