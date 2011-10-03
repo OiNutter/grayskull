@@ -11,13 +11,13 @@ module Grayskull
       @schema = schema
       
       if file.kind_of?(String) && !Formats::FILENAME_PATTERN.match(file).nil?
-        @loaded_file = DataFiles.load(file)
+        @loaded_file = DataFile.load(file)
       else
         @loaded_file = file
       end
       
       if schema.kind_of?(String) && !Formats::FILENAME_PATTERN.match(schema).nil?
-        @loaded_schema = DataFiles.load(schema)
+        @loaded_schema = DataFile.load(schema)
       else
         @loaded_schema = schema
       end
