@@ -11,13 +11,13 @@ module Grayskull
       @schema = schema
       
       if file.kind_of?(String) && !Formats::FILENAME_PATTERN.match(file).nil?
-        @loaded_file = self.load(file)
+        @loaded_file = DataFiles.load(file)
       else
         @loaded_file = file
       end
       
       if schema.kind_of?(String) && !Formats::FILENAME_PATTERN.match(schema).nil?
-        @loaded_schema = self.load(schema)
+        @loaded_schema = DataFiles.load(schema)
       else
         @loaded_schema = schema
       end
@@ -26,21 +26,7 @@ module Grayskull
       
       @errors = []
     end
-    
-    # Loads the specified file depending on the format
-    def load(file)
      
-      format = Formats::detect_format File.basename(file)
-     
-      case format
-        when 'yaml'
-          return Formats::YAMLHandler.load(file)
-        when 'json'
-          return Formats::JSONHandler.load(file)
-       end
-       
-    end
-    
     # Validates the file against the schema
     def validate()
        failed = []
