@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Grayskull by OiNutter</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/OiNutter/grayskull">Fork On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/OiNutter/grayskull/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/OiNutter/grayskull/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Grayskull</h1>
+          <p>Ruby Gem for validating data files.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/OiNutter">OiNutter</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>Grayskull</h1>
+
+<p>Grayskull is a Ruby library for validating data files against custom schema. It currently validates YAML and JSON files. It can be used as a library in your 
+ruby code and also comes with a command line tool.</p>
+
+<h2>Installation</h2>
+
+<div class="highlight">
+<pre>gem install grayskull
+</pre>
+</div>
+
+
+<h2>Usage</h2>
+
+<h3>Library</h3>
+
+<div class="highlight">
+<pre><span class="nb">require</span> <span class="s1">'grayskull'</span>
+<span class="n">validator</span> <span class="o">=</span> <span class="no">Grayskull</span><span class="o">::</span><span class="no">Validator</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">schema</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">validator</span><span class="o">.</span><span class="n">validate</span>
+</pre>
+</div>
+
+
+<p>Grayskulls <code>validate</code> function will return one of the following Hashes.</p>
+
+<p>Success:</p>
+
+<div class="highlight">
+<pre><span class="p">{</span>
+    <span class="s2">"result"</span><span class="ss">:true</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>Failure:</p>
+
+<div class="highlight">
+<pre><span class="p">{</span>
+    <span class="s2">"result"</span><span class="ss">:false</span><span class="p">,</span>
+    <span class="s2">"errors"</span><span class="ss">:errors</span> <span class="c1">#Array of error messages</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h3>Command Line</h3>
+
+<div class="highlight">
+<pre>grayskull validate path/to/file path/to/schema
+</pre>
+</div>
+
+
+<h3>Schema Files</h3>
+
+<p>Schema files should be in the following format:</p>
+
+<p>YAML:</p>
+
+<div class="highlight">
+<pre><span class="l-Scalar-Plain">sections</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">section1</span> <span class="c1">#section name</span>
+    <span class="l-Scalar-Plain">required</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Array</span> <span class="c1">#Valid ruby type or a custom type as defined in types.</span>
+    <span class="l-Scalar-Plain">ok_empty</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+    <span class="l-Scalar-Plain">accepts</span><span class="p-Indicator">:</span> <span class="c1">#list of accepted types</span>
+      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom_type1</span>
+      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom_type2</span>
+<span class="l-Scalar-Plain">types</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">custom_type1</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Hash</span> <span class="c1">#Valid ruby type or a custom type as defined in types.</span>
+    <span class="l-Scalar-Plain">ok_empty</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+    <span class="l-Scalar-Plain">accepts</span><span class="p-Indicator">:</span>
+      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">String</span> <span class="c1">#list of accepted types</span>
+  <span class="l-Scalar-Plain">custom_type2</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Array</span>
+    <span class="l-Scalar-Plain">ok_empty</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+    <span class="l-Scalar-Plain">accepts</span><span class="p-Indicator">:</span>
+      <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">Array</span>
+</pre>
+</div>
+
+
+<p>JSON</p>
+
+<div class="highlight">
+<pre><span class="p">{</span>
+<span class="nt">"sections"</span><span class="p">:[</span>
+               <span class="p">{</span>
+            <span class="nt">"name"</span><span class="p">:</span> <span class="s2">"section_name"</span><span class="p">,</span>
+            <span class="nt">"required"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">"type"</span><span class="p">:</span> <span class="s2">"Array"</span><span class="p">,</span> 
+            <span class="nt">"ok_empty"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">"accepts"</span><span class="p">:[</span> 
+                <span class="s2">"custom_type1"</span><span class="p">,</span>
+                <span class="s2">"String"</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="p">],</span>
+<span class="nt">"types"</span><span class="p">:{</span>
+    <span class="nt">"custom_type1"</span><span class="p">:{</span>
+        <span class="nt">"type"</span><span class="p">:</span><span class="s2">"Hash"</span><span class="p">,</span>
+        <span class="nt">"ok_empty"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+        <span class="nt">"accepts"</span><span class="p">:[</span> 
+            <span class="s2">"Hash"</span>
+            <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<p>As all files are converted to native ruby formats you can mix json files with yaml schemas and vice versa.</p>
+
+<h2>Coming Soon</h2>
+
+<ul>
+<li>More formats</li>
+<li>Unit Tests</li>
+</ul><h2>Notes</h2>
+
+<p>This is an extraction of the validation code from my first gem skeletor. I'm still pretty new to ruby so I'd be really grateful for any constructive feedback, input, suggestions etc. As usual, if anybody wants to
+contribute feel free, just check out the guidelines below.</p>
+
+<h2>Contributing to Grayskull</h2>
+
+<ul>
+<li>Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet</li>
+<li>Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it</li>
+<li>Fork the project</li>
+<li>Start a feature/bugfix branch</li>
+<li>Commit and push until you are happy with your contribution</li>
+<li>Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.</li>
+<li>Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.</li>
+</ul><h2>Copyright</h2>
+
+<p>Copyright (c) 2011 Will McKenzie (OiNutter)</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
