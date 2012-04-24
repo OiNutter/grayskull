@@ -52,3 +52,6 @@ pkg
 
 /test/test_project/*
 *.gem
+
+# For sublime
+*.sublime-*
