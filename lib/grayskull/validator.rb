@@ -66,6 +66,7 @@ module Grayskull
         
         #check type 
         if !check_type(node,expected['type'],label,expected['ok_empty'])
+          @errors.push('Error: node ' + label + ' is not of an accepted type. Should be one of ' + expected['accepts'].join(', '))
           return false
         end
         
